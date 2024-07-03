@@ -9,6 +9,9 @@ import cors from "cors";
 //My Routes
 import authRoutes from "./routes/auth.js";
 import userRoutes from "./routes/user.js";
+import categoryRoutes from "./routes/category.js";
+import productRoutes from "./routes/product.js";
+import orderRoutes from "./routes/order.js";
 
 const app = express();
 
@@ -31,6 +34,9 @@ app.use(cors());
 //MyRoutes
 app.use("/api", authRoutes);
 app.use("/api", userRoutes);
+app.use("/api", categoryRoutes);
+app.use("/api", productRoutes);
+app.use("/api", orderRoutes);
 
 const port = process.env.PORT || 8000;
 

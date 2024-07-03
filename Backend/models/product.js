@@ -1,5 +1,7 @@
-const mongoose = require("mongoose");
-const { ObjectId } = mongoose.Schema;
+import mongoose from 'mongoose';
+
+const { Schema } = mongoose;
+const { ObjectId } = Schema.Types;
 
 const productSchema = new mongoose.Schema(
   {
@@ -41,4 +43,6 @@ const productSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-module.exports = mongoose.model("Product", productSchema);
+const Product = mongoose.model("Product", productSchema);
+
+export default Product;

@@ -58,7 +58,7 @@ class AuthController {
             }
             
             //secret token
-            const token = jwt.sign({ _id: user._id }, process.env.SECRET);
+            const token = jwt.sign({ _id: user._id }, process.env.SECRET, { expiresIn: '1h' });
             //put token in cookie 
             res.cookie("token", token, { expire: new Date() + 9999 });
 
@@ -84,19 +84,19 @@ class AuthController {
     isSignedIn = expressJwt({
         secret: process.env.SECRET,
         algorithms: ["HS256"],
-        userProperty: "Auth",
+        requestProperty: "user",
     })
 
-    //custom middleware
     isAuthenticated = (req, res, next) => {
-        let checker = req.profile && req.auth && req.profile._id.toString() === req.auth._id.toString();
+        const checker = req.profile && req.user && req.profile._id.toString() === req.user._id.toString();
         if (!checker) {
             return res.status(403).json({
-                err: "User Access Denied"
-            })
+                error: "User Access Denied"
+            });
         }
         next();
     }
+
 
     isAdmin = (req, res, next) => {
         if (req.profile.role === 0) {

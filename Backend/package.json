@@ -21,6 +21,7 @@
     "express-jwt": "^5.3.3",
     "express-validator": "^6.15.0",
     "formidable": "^1.2.1",
+    "fs": "^0.0.1-security",
     "i": "^0.3.6",
     "jsonwebtoken": "^8.5.1",
     "lodash": "^4.17.15",
